@@ -1,5 +1,5 @@
 ﻿//#define FAKE_TREE_FILE
-#define PRE_RELEASE
+//#define PRE_RELEASE
 
 using System;
 using System.Collections.Generic;
