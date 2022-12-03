@@ -153,6 +153,19 @@ namespace TF2CLauncher
 
             tree = new Tree(serverURL);
 
+            updateListBox();
+
+            if (!File.Exists(getGamePath() + @"\gameinfo.txt"))
+            {
+                launchButton.Enabled = false;
+                updateButton.Enabled = false;
+
+                placementWarning();
+
+                // The launcher is not correctly positioned, so don't display any popup to update the game or anything.
+                return;
+            }
+
             if (fetchLocalVersionNumber() && checkForUpdates())
             {
                 String updateName = getLatestTreeVersionString(1);
@@ -162,20 +175,13 @@ namespace TF2CLauncher
                 statusPanel.Text = "A new patch is available for download!";
                 updateButton.Enabled = true;
                 updateButton.Text = "Update available";
+
+                // There is an update available, the update process is now handled by tf2cdownloader so we show a popup.
+                new UpdatePopup().ShowDialog();
             }
             else
             {
                 statusPanel.Text = "Your build appears to be up to date";
-            }
-
-            updateListBox();
-
-            if (!File.Exists(getGamePath() + @"\gameinfo.txt"))
-            {
-                launchButton.Enabled = false;
-                updateButton.Enabled = false;
-
-                placementWarning();
             }
         }
 
@@ -397,7 +403,8 @@ namespace TF2CLauncher
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            statusPanel.ForeColor = Color.Black;
+            new UpdatePopup().ShowDialog();
+            /*statusPanel.ForeColor = Color.Black;
             statusPanel.Text = "Updating...";
 
             updateProgressBar.Maximum = 100;
@@ -410,7 +417,7 @@ namespace TF2CLauncher
                 return;
             }
 
-            Task.Factory.StartNew(() => update()); //New method.
+            Task.Factory.StartNew(() => update()); //New method.*/
         }
 
         void applyLauncherUpdates()

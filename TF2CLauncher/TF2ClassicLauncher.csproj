@@ -95,6 +95,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Steam.cs" />
     <Compile Include="Tree.cs" />
+    <Compile Include="UpdatePopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdatePopup.Designer.cs">
+      <DependentUpon>UpdatePopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="ZipArchiveExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -110,6 +116,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UpdatePopup.resx">
+      <DependentUpon>UpdatePopup.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
